@@ -8,7 +8,7 @@ public class NavControl : MonoBehaviour
     public GameObject target;
     public GameObject target1;
     private NavMeshAgent agent;
-    bool isWalking = true;
+    bool isWalking = false;
     private Animator animator;
 
     public float rotateSpeed;
@@ -26,6 +26,15 @@ public class NavControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Mathf.Abs(agent.transform.position.magnitude - target.transform.position.magnitude) < 5)
+        {
+            isWalking = true;
+        }
+        else
+        {
+            isWalking = false;
+        }
+
         if (isWalking)
         {
             agent.destination = target.transform.position;
